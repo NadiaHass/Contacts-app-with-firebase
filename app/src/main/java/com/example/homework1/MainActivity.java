@@ -3,8 +3,10 @@ package com.example.homework1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TextView textView = findViewById(R.id.tv_data);
+        Button goToContactsButton = findViewById(R.id.btn_contacts);
 
         String fullName = getIntent().getStringExtra("name");
         String email = getIntent().getStringExtra("email");
@@ -32,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("email" , email);
         editor.putString("password" , password);
         editor.apply();
+
+        goToContactsButton.setOnClickListener(v -> {
+            startActivity(new Intent(this , ContactsActivity.class));
+        });
 
     }
 }
