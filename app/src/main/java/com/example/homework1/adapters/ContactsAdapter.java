@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.homework1.Contact;
+import com.example.homework1.models.Contact;
 import com.example.homework1.R;
 
 import java.util.ArrayList;
@@ -37,6 +37,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     @Override
     public void onBindViewHolder(@NonNull ContactsAdapter.ContactViewHolder holder, int position) {
         holder.nameTextView.setText(contacts.get(position).getName());
+        holder.numberTextView.setText(contacts.get(position).getNumber());
 
         if (Objects.equals(contacts.get(position).getImage(), "male")){
             holder.contactImageView.setImageDrawable(context.getDrawable(R.drawable.avatar));
@@ -57,13 +58,15 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     }
 
     public static class ContactViewHolder extends RecyclerView.ViewHolder{
-        public TextView nameTextView;
+        public TextView nameTextView , numberTextView;
         public ImageView contactImageView;
         public ContactViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            nameTextView = itemView.findViewById(R.id.tv_contact);
+            nameTextView = itemView.findViewById(R.id.tv_contact_name);
+            numberTextView = itemView.findViewById(R.id.tv_number);
             contactImageView = itemView.findViewById(R.id.iv_contact);
+
         }
     }
 }

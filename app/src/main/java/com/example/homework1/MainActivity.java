@@ -9,35 +9,32 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.firebase.auth.FirebaseAuth;
 
+public class MainActivity extends AppCompatActivity {
+    FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
         TextView textView = findViewById(R.id.tv_data);
         Button goToContactsButton = findViewById(R.id.btn_contacts);
+        Button signOutButton = findViewById(R.id.btn_sign_out);
 
-        String fullName = getIntent().getStringExtra("name");
-        String email = getIntent().getStringExtra("email");
-        String password = getIntent().getStringExtra("password");
+        textView.setText("Hello ");
 
-        if(fullName == null || email == null|| password == null){
-            textView.setText("Hello ");
-        }else{
-            textView.setText("Hello " + fullName + " !\n" +
-                    "Email = " + email + "\n" + "Password = " + password + "\n");
-        }
-
-        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("name", fullName);
-        editor.putString("email" , email);
-        editor.putString("password" , password);
-        editor.apply();
 
         goToContactsButton.setOnClickListener(v -> {
             startActivity(new Intent(this , ContactsActivity.class));
+        });
+
+        signOutButton.setOnClickListener(v->{
+            firebaseAuth.signOut();
+            startActivity(new Intent(this , WelcomeActivity.class));
+            finish();
         });
 
     }
