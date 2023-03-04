@@ -15,7 +15,7 @@ __Contacts__ is an android application home work for android bootcamp participan
 <p/>
 
 # Technologies used
-- __Java As a programming language.
+- __Java-__  As a programming language.
 - __Firebase Authentification-__ To sign in users with email and password .
 - __Cloud Firestore-__ To store contacts.
 - __Material Design-__ an adaptable system of guidelines, components, and tools that support the best practices of user interface design. 
